@@ -26,7 +26,7 @@ so I relented. This money is vested over 3 years.
 
 ## Governance
 
-I don't want InsultCoin to become a security, as my budget doesn't allow me to
+I don't want InsultCoin to become a security, and my budget doesn't allow me to
 consult a lawyer, and I have to account for the laws of a bunch of regions
 around the world, so no it will not have a built-in governance system.
 However, there is by default a timelock controller from OpenZeppelin that
