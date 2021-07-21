@@ -1,0 +1,8 @@
+module.exports = {
+  "extends": "solhint:recommended",
+  "plugins": [],
+  "rules": {
+    "avoid-suicide": "error",
+    "avoid-sha3": "warn"
+  }
+}

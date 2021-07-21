@@ -1,0 +1,52 @@
+{
+  "name": "insultcoin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.1.0",
+    "dotenv": "^10.0.0",
+    "ethereumjs-util": "^7.0.10",
+    "keccak256": "^1.0.2",
+    "legalize": "^1.3.0",
+    "web3-eth-abi": "^1.3.6"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@types/chai": "^4.2.18",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "^15.12.2",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
+    "chai": "^4.3.4",
+    "eslint": "^7.29.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "ethereum-waffle": "^3.3.0",
+    "ethers": "^5.2.0",
+    "hardhat": "^2.4.3",
+    "mocha": "^9.0.1",
+    "prettier": "^2.3.2",
+    "prettier-plugin-solidity": "^1.0.0-beta.15",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  },
+  "scripts": {
+    "test": "npx hardhat test",
+    "build": "npx hardhat compile",
+    "deploy-mainnet": "npx hardhat run --network eth scripts/deploy.ts",
+    "deploy-rinkeby": "npx hardhat run --network rinkeby scripts/deploy.ts",
+    "deploy-ropsten": "npx hardhat run --network ropsten scripts/deploy.ts",
+    "deploy-bsc": "npx hardhat run --network bsc scripts/deploy.ts",
+    "deploy-bsctest": "npx hardhat run --network bsctest scripts/deploy.ts",
+    "rpc": "npx hardhat node",
+    "deploy-rpc": "npx hardhat run --network localhost scripts/deploy.ts"
+  },
+  "author": "",
+  "license": "ISC"
+}
