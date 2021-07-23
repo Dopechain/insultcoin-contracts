@@ -22,7 +22,6 @@ contract Deployment {
   }
   struct RoleSettings {
     address owner;
-    address wordKeeper;
     address fundManager;
     address[] minters;
     address[] moderators;
@@ -111,6 +110,6 @@ contract Deployment {
       tokenContract.withdraw(address(icoContract), icoSet.amount);
     }
 
-    insultingContract = new Insulting(tokenContract, roles.wordKeeper);
+    insultingContract = new Insulting(tokenContract, roles.fundManager);
   }
 }

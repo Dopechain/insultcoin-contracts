@@ -11,7 +11,7 @@ contract ICO is IICO, AccessControl {
   bytes32 public constant FUNDMAN = keccak256("FUND_MAN");
 
   ERC20 token;
-  uint256 public RATE = 100;
+  uint256 public RATE = 1000;
   modifier icoactive {
     require(token.balanceOf(address(this)) > 0, "bro party's over");
     _;

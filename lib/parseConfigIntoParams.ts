@@ -14,7 +14,6 @@ export default function(config: ConfigSchema) {
         },
         {
             owner: config.roles.owner.get(),
-            wordKeeper: config.roles.wordKeeper.get(),
             fundManager: config.roles.fundManager.get(),
             minters: config.roles.minters.map(a => a.get()),
             moderators: config.roles.moderators.map(a => a.get()),

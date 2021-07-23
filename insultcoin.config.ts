@@ -87,10 +87,6 @@ let config: ConfigSchema = {
     roles: {
         // Initially gets all roles and DEFAULT_ADMIN_ROLE. Keep this address safe!
         owner: new EthAddress("0x6Df36b3718a18795f75f3b094432c0D755789d72"),
-        
-        // Controls the list of "insult words", UIs interacting with the contract SHOULD
-        // remove/hide any messages not containing them.
-        wordKeeper: new EthAddress("0x6Df36b3718a18795f75f3b094432c0D755789d72"),
 
         // Most financial things go to this role
         // This is the recipient of the initial dev amount (if specified),
@@ -123,8 +119,7 @@ let config: ConfigSchema = {
         // MAY be a string, an ethers.BigNumber, a JS BigNumber or a number.
         // (Note that if using number, you may have issues with the 64-bit limit,
         // EVM platforms like Ethereum use 256 bit numbers. Use strings.)
-        funderSupply: "1000000000000000000000",
-
+        funderSupply: "6900000000000000000000000",
 
         /*
         Vesting is where it gradually pays the devs a fixed amount of tokens (funderStarts in this case)
@@ -156,8 +151,8 @@ let config: ConfigSchema = {
             // by the fund manager from the total supply, and then put them up for sale.
             amount: "remainder",
 
-            // Rate: how many tokens per ETH/native token?
-            // Change this based on your blockchain, lol
+            // Rate: how many tokens per native token?
+            // Change this based on your blockchain.
             rate: 1000
         }
     }

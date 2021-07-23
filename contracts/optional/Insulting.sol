@@ -14,12 +14,12 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 contract Insulting is AccessControl {
   using Counters for Counters.Counter;
 
+  uint256 tokensRequired = 10 * 10**18;
+
   ERC20 public insultCoin;
   Counters.Counter public insultIdCount;
 
-  /// @notice The Word Keeper controls the list of bad words!
-  /// @dev The word keeper can change the insultWords list via the setWordList function
-  bytes32 public constant WORDSKEEPER = keccak256("WORDS_KEEPER");
+  bytes32 public constant FUNDMAN = keccak256("FUND_MAN");
 
   /// @notice This variable maps insults to senders.
   mapping(address => Insult[]) public mySentInsults;
@@ -27,31 +27,6 @@ contract Insulting is AccessControl {
   mapping(address => Insult[]) public myReceivedInsults;
   /// @notice This variable maps IDs to insults.
   mapping(uint256 => Insult[]) public idToInsult;
-
-  /// @notice This array is a list of bad words. You can only see insults with at least one of these words in them.
-  /// @dev Dear UX developers: please do not display any insults without one of these words.
-  /// @dev This list may be changed by the Word Keeper via the setWordList function
-  string[] public insultWords = [
-    "fuck",
-    "shit",
-    "angry",
-    "hate",
-    "ass",
-    "dick",
-    "butt",
-    "poo",
-    "dumb",
-    "idiot",
-    "stupid",
-    "bitch",
-    "bad",
-    "malicious",
-    "sad",
-    "cry",
-    "frustrated",
-    "mean",
-    "mad"
-  ];
 
   using SafeERC20 for ERC20;
   /// @dev This is the basic insult type.
@@ -65,14 +40,14 @@ contract Insulting is AccessControl {
     uint256 timestamp;
   }
 
-  constructor(ERC20 token, address wordske) {
+  constructor(ERC20 token, address fundman) {
     insultCoin = token;
-    _setupRole(WORDSKEEPER, wordske);
+    _setupRole(FUNDMAN, fundman);
   }
 
   /// @notice Insult a target.
-  /// User must approve at least 10 INSULT to insult someone.
-  /// You have to approve this before you.. do it
+  /// User must approve at least {tokensRequired} INSULT to insult someone.
+  /// You have to approve this before you insult
   /// @param target receiver of the insult
   /// @param message the insult
   /// @param cost the amount to burn
@@ -82,7 +57,7 @@ contract Insulting is AccessControl {
     uint256 cost
   ) public {
     require(cost <= insultCoin.balanceOf(msg.sender), "cost > your balance");
-    require(cost >= (10 * 10**18), "Requires >10 tokens.");
+    require(cost >= (tokensRequired), "Too little $$");
 
     // The token contract owns all "burnt" INSULT
     // This may be useful for future things
@@ -108,11 +83,10 @@ contract Insulting is AccessControl {
     idToInsult[newid].push(ins);
   }
 
-  /// @notice Sets the list of bad words: word keeper only!
-  /// @param list The new list of bad words
-  function setWordList(string[] memory list) public {
-    require(hasRole(WORDSKEEPER, msg.sender), "Unauthorized, not word keeper");
-    insultWords = list;
+  /// @notice Adjusts the amount you need to burn to insult: fund manager only!
+  /// @param newAmount The new minimum amount needed.
+  function adjustCost(uint256 newAmount) public {
+    require(hasRole(FUNDMAN, msg.sender), "Unauthorized, not fund manager");
   }
 
   // @notice This returns all the insults that a user has sent.
