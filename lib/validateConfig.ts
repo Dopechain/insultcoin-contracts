@@ -88,7 +88,7 @@ export function validateConfig(config: ConfigSchema) {
         }
         
 
-        if (config.tokenomics.funderSupply > config.totalSupply) {
+        if (BigNumber.from(config.tokenomics.funderSupply).gt(config.totalSupply)) {
             throw "Config: tokenomics.funderSupply bigger than totalSupply"
         }
         if (config.tokenomics.ico.amount == "remainder") {

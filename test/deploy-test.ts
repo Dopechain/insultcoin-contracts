@@ -20,7 +20,6 @@ let testingTokenSettings = async function() {
     },
     {
       owner: owner.address,
-      wordKeeper: owner.address,
       fundManager: owner.address,
       minters: [owner.address],
       moderators: [owner.address]

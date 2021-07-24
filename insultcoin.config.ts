@@ -100,7 +100,7 @@ let config: ConfigSchema = {
         Make sure you trust who has these roles, they can make or break your token.
         
         Minters: Can mint unlimited INSULT, causing huge price fluctuation
-        Moderators: Can harm the community by blocking any address they want
+        Moderators: Can censor and block any address they want
         */
 
         // Minters: allows member to mint coins.
