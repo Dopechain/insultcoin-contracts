@@ -4,7 +4,16 @@ import { ethers } from "hardhat";
 
 let testingTokenSettings = async function() {
   const [owner, addr1, addr2] = await ethers.getSigners();
-  return ["Token", "INSULT", ethers.BigNumber.from("23000000000000000000000000"), owner.address, owner.address, owner.address, [owner.address], [], false]
+  return [
+    "InsultCoin",
+    "INSULT",
+    ethers.BigNumber.from("23000000000000000000000000"),
+    owner.address,
+    owner.address,
+    [owner.address],
+    [owner.address], 
+    true
+  ]
 }
 
 describe("Token Vesting", function() {

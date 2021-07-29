@@ -36,7 +36,7 @@ contract Token is ERC20, AccessControl {
   /// @dev A boolean, defaults to false. If this is set to true,
   /// @dev the economy is completely paused until flipped back.
   /// @dev Pause restrictions are bypassed by moderators.
-  bool public pausedAll;
+  bool public pausedAll = false;
 
   /// @notice Constructor of the basic InsultCoin DApp.
   /// @dev Should be deployed alongside other separate contracts (ICO, Vesting, etc).
@@ -125,11 +125,11 @@ contract Token is ERC20, AccessControl {
   ) internal virtual override {
     // Only moderators can bypass pausing.
     require(
-      pausedAll == false && hasRole(MODERATOR, from) == false,
+      pausedAll == false || hasRole(MODERATOR, from) == true,
       "InsultCoin is paused."
     );
     require(
-      paused[from] == false && hasRole(MODERATOR, from) == false,
+      paused[from] == false || hasRole(MODERATOR, from) == true,
       "Your account is paused."
     );
     super._beforeTokenTransfer(from, to, amount); // Call parent hook

@@ -52,7 +52,7 @@ describe("Deployment Contract", function() {
     const [owner, addr1, addr2] = await ethers.getSigners();
 
     const Deploy = await ethers.getContractFactory("Deployment")
-    const Timelock = await ethers.getContractFactory("TimelockGov")
+    const Timelock = await ethers.getContractFactory("TimelockController")
     const Token = await ethers.getContractFactory("Token")
 
     let settings = await testingTokenSettings()
@@ -60,8 +60,8 @@ describe("Deployment Contract", function() {
     const deployContract = await Deploy.deploy(...settings);
     await deployContract.deployed();
 
-    let tlContract = Timelock.attach(await deployContract.controllerAddr())
-    let tokenContract = Token.attach(await deployContract.tokenAddr())
+    let tlContract = Timelock.attach(await deployContract.controllerContract())
+    let tokenContract = Token.attach(await deployContract.tokenContract())
 
     await tokenContract.mint(tlContract.address, 1000)
     

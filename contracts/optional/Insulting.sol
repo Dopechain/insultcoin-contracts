@@ -87,6 +87,7 @@ contract Insulting is AccessControl {
   /// @param newAmount The new minimum amount needed.
   function adjustCost(uint256 newAmount) public {
     require(hasRole(FUNDMAN, msg.sender), "Unauthorized, not fund manager");
+    tokensRequired = newAmount;
   }
 
   // @notice This returns all the insults that a user has sent.

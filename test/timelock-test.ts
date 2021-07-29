@@ -7,7 +7,16 @@ let keccak256 = require("keccak256")
 
 let testingTokenSettings = async function() {
   const [owner, addr1, addr2] = await ethers.getSigners();
-  return ["Token", "INSULT", ethers.BigNumber.from("23000000000000000000000000"), owner.address, owner.address, owner.address, [owner.address], [], false]
+  return [
+    "InsultCoin",
+    "INSULT",
+    ethers.BigNumber.from("23000000000000000000000000"),
+    owner.address,
+    owner.address,
+    [owner.address],
+    [owner.address], 
+    true
+  ]
 }
 
 describe("Timelock Controller", function() {

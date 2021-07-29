@@ -17,6 +17,8 @@ contract ICO is IICO, AccessControl {
     _;
   }
 
+  event TokenBought(address sender, uint256 amount, uint256 remaining);
+
   constructor(
     address _tokenAddr,
     address fundmanager,
@@ -25,10 +27,6 @@ contract ICO is IICO, AccessControl {
     token = ERC20(_tokenAddr);
     _setupRole(FUNDMAN, fundmanager);
     RATE = _rate;
-  }
-
-  function _getTokenAmount(uint256 _weiAmount) internal view returns (uint256) {
-    return (_weiAmount / (10**18)) * RATE;
   }
 
   function harvestToAccount(address account) public {
@@ -40,6 +38,14 @@ contract ICO is IICO, AccessControl {
 
   function buy() external payable override icoactive {
     uint256 _amount = _getTokenAmount(msg.value);
+    uint256 bal = token.balanceOf(address(this));
+
+    emit TokenBought(msg.sender, _amount, bal - _amount);
+
     token.transfer(msg.sender, _amount);
+  }
+
+  function _getTokenAmount(uint256 _weiAmount) internal view returns (uint256) {
+    return (_weiAmount / (10**18)) * RATE;
   }
 }

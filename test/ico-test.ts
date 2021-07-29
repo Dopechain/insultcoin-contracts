@@ -4,7 +4,16 @@ import { ethers } from "hardhat";
 
 let testingTokenSettings = async function() {
   const [owner, addr1, addr2] = await ethers.getSigners();
-  return ["InsultCoin", "INSULT", ethers.BigNumber.from("23000000000000000000000000"), owner.address, owner.address, owner.address, [owner.address], [owner.address], true]
+  return [
+    "InsultCoin",
+    "INSULT",
+    ethers.BigNumber.from("23000000000000000000000000"),
+    owner.address,
+    owner.address,
+    [owner.address],
+    [owner.address], 
+    true
+  ]
 }
 
 describe("ICO", function() {
