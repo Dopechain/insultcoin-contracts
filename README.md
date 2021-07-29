@@ -61,7 +61,7 @@ so don't consider them promises.
 
 ## Testing
 
-There's an unknown bug blocking "npm test", but hey, it compiles so whatever!
+To run unit tests, do "npm test".
 
 To run your own local version, run "npm run rpc", open a new command window,
 then run "npm run deploy-rpc" in the new window.
