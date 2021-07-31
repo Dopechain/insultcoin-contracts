@@ -39,12 +39,12 @@ In the InsultCoin code, there are multiple roles:
 - Minters: Can mint tokens at any time, and as much as they wish.
 - Moderators: Can freeze accounts and the entire InsultCoin network.
 
-## "Roadmap"
+## To-Do
 
 To be honest, I think I'm going to be giving up on a couple of these,
 so don't consider them promises.
 
-### Stage 1: Idiots & Insults [x]
+### Stage 1 [x]
 
 - Deploy the insulting, token, ICO and other basic contracts to BSC
 
