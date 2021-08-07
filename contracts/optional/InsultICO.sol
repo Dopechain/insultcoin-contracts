@@ -5,6 +5,7 @@ import "../Token.sol";
 import "./IICO.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "hardhat/console.sol";
 
 contract ICO is IICO, AccessControl {
   // Fund manager: can withdraw and control funds
@@ -46,6 +47,6 @@ contract ICO is IICO, AccessControl {
   }
 
   function _getTokenAmount(uint256 _weiAmount) internal view returns (uint256) {
-    return (_weiAmount / (10**18)) * RATE;
+    return _weiAmount * RATE;
   }
 }

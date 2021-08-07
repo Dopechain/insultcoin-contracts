@@ -14,7 +14,7 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 contract Insulting is AccessControl {
   using Counters for Counters.Counter;
 
-  uint256 tokensRequired = 10 * 10**18;
+  uint256 tokensRequired = 1 * 10**18;
 
   ERC20 public insultCoin;
   Counters.Counter public insultIdCount;
@@ -22,13 +22,31 @@ contract Insulting is AccessControl {
   bytes32 public constant FUNDMAN = keccak256("FUND_MAN");
 
   /// @notice This variable maps insults to senders.
+  /// @dev This is intentionally optimized for smart
+  /// @dev contracts reading the insult data,
+  /// @dev so they don't have to do expensive
+  /// @dev for-loops. Incurs a bigger gas cost for
+  /// @dev the insult-er... insulter?
   mapping(address => Insult[]) public mySentInsults;
+
   /// @notice This variable maps insults to receivers.
+  /// @dev This is intentionally optimized for smart
+  /// @dev contracts reading the insult data,
+  /// @dev so they don't have to do expensive
+  /// @dev for-loops. Incurs a bigger gas cost for
+  /// @dev the insult-er... insulter?
   mapping(address => Insult[]) public myReceivedInsults;
+
   /// @notice This variable maps IDs to insults.
+  /// @dev This is intentionally optimized for smart
+  /// @dev contracts reading the insult data,
+  /// @dev so they don't have to do expensive
+  /// @dev for-loops. Incurs a bigger gas cost for
+  /// @dev the insult-er... insulter?
   mapping(uint256 => Insult[]) public idToInsult;
 
   using SafeERC20 for ERC20;
+
   /// @dev This is the basic insult type.
   /// @dev Stores information like ID, sender, receiver, message and amount spent.
   struct Insult {
