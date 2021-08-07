@@ -8,10 +8,9 @@ Sorry for overhyping. InsultCoin is a project that lets you send and receive ins
 on the blockchain. Currently only available on BSC, but when I get the money, it will come to Ethereum,
 a bunch of random layer-2s, probably Polygon, HECO? It'll go cross-chain one day, ok?
 
-## Mission Statement
+## Mission
 
-We want to allow all people from around the world with an Internet connection to be able to
-insult each other in an uncensored and secure way, making location irrelevant to insulting.
+We want to allow all people from around the world with an Internet connection to be able to insult each other in an uncensored and secure way, in a really fun and idiotic way.
 
 ## Disclaimer
 
@@ -26,11 +25,11 @@ so I relented. This money is vested over 3 years.
 
 ## Governance
 
-I don't want InsultCoin to become a security, as my budget doesn't allow me to
-consult a lawyer, and I have to account for the laws of a bunch of regions
-around the world, so no it will not have a built-in governance system.
+Sadly it will not have a built-in token voting DAO whatever governance system
+cuz it causes paperwork, paperwork and mounds of paperwork.
 However, there is by default a timelock controller from OpenZeppelin that
-forces me to wait a couple hours before making changes.
+forces me to wait a couple hours before making changes. If you have
+a good idea, contact me!
 
 In the InsultCoin code, there are multiple roles:
 
