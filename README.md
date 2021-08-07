@@ -8,10 +8,9 @@ Sorry for overhyping. InsultCoin is a project that lets you send and receive ins
 on the blockchain. Currently only available on BSC, but when I get the money, it will come to Ethereum,
 a bunch of random layer-2s, probably Polygon, HECO? It'll go cross-chain one day, ok?
 
-## Mission Statement
+## Mission
 
-We want to allow all people from around the world with an Internet connection to be able to
-insult each other in an uncensored and secure way, making location irrelevant to insulting.
+We want to allow all people from around the world with an Internet connection to be able to insult each other in an uncensored and secure way, in a really fun and idiotic way.
 
 ## Disclaimer
 
