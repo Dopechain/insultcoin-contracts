@@ -139,8 +139,8 @@ let config: ConfigSchema = {
             cliff: "0",
 
             // The duration (how long in seconds will it be vesting for?)
-            // Defaults to 1 year
-            duration: "31556952",
+            // Defaults to 3 years
+            duration: "94670856",
         },
 
         // Auto-ICO: Create an ICO smart contract?

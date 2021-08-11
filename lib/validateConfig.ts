@@ -77,7 +77,7 @@ export function validateConfig(config: ConfigSchema) {
         if (!config.tokenomics.vesting) config.tokenomics.vesting = {
             enabled: false,
             cliff: BigNumber.from("0"),
-            duration: BigNumber.from("31556952") // 1 year
+            duration: BigNumber.from("946708562") // 3 years
         }
         if (!config.tokenomics.ico) {
             config.tokenomics.ico = {
