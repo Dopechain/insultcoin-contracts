@@ -81,4 +81,21 @@ describe("Insulting", function() {
     let recInsults = await insultContract.getReceivedInsults(addr1.address)
     expect(recInsults[0].id._hex).to.equal('0x00');
   });
+  it("Should adjust cost as fund manager", async function() {
+    const [owner, addr1, addr2] = await ethers.getSigners();
+    const Token = await ethers.getContractFactory("Token");
+    const Insulting = await ethers.getContractFactory("Insulting")
+    const tokenContract = await Token.deploy(...await testingTokenSettings());
+    const insultContract = await Insulting.deploy(tokenContract.address, owner.address)
+    
+    await tokenContract.deployed();
+    await insultContract.deployed();
+
+    // Make sure it insults properly
+    await insultContract.adjustCost(1000)
+
+    let tokensRequired = await insultContract.tokensRequired()
+    expect(tokensRequired._hex).to.equal('0x03e8');
+  });
+  
 });

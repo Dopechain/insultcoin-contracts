@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
-import '@openzeppelin/contracts/access/Ownable.sol';
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
 /**
@@ -25,8 +25,8 @@ contract TokenVesting is Ownable {
 
   bool public revocable;
 
-  mapping (address => uint256) public released;
-  mapping (address => bool) public revoked;
+  mapping(address => uint256) public released;
+  mapping(address => bool) public revoked;
 
   /**
    * @dev Creates a vesting contract that vests its balance of any ERC20 token to the
@@ -37,7 +37,12 @@ contract TokenVesting is Ownable {
    * @param _duration duration in seconds of the period in which the tokens will vest
    * @param _revocable whether the vesting is revocable or not
    */
-  constructor (address _beneficiary, uint256 _cliff, uint256 _duration, bool _revocable) {
+  constructor(
+    address _beneficiary,
+    uint256 _cliff,
+    uint256 _duration,
+    bool _revocable
+  ) Ownable() {
     require(_beneficiary != address(0));
     require(_cliff <= _duration);
 
@@ -57,7 +62,7 @@ contract TokenVesting is Ownable {
   function release(ERC20 token) public {
     uint256 unreleased = releasableAmount(token);
 
-    require(unreleased > 0);
+    require(unreleased > 0, "You can claim it later.");
 
     released[address(token)] = released[address(token)] + unreleased;
 
@@ -71,8 +76,8 @@ contract TokenVesting is Ownable {
    * @param token ERC20 token which is being vested
    */
   function revoke(ERC20 token) public onlyOwner {
-    require(revocable);
-    require(!revoked[address(token)]);
+    require(revocable, "This can't be revoked.");
+    require(!revoked[address(token)], "Already revoked");
 
     uint256 balance = token.balanceOf(address(this));
 
@@ -97,7 +102,11 @@ contract TokenVesting is Ownable {
    * @dev Calculates the amount that has already vested.
    * @param token ERC20 token which is being vested
    */
-  function vestedAmount(ERC20 token, uint256 timestamp) public view returns (uint256) {
+  function vestedAmount(ERC20 token, uint256 timestamp)
+    public
+    view
+    returns (uint256)
+  {
     uint256 currentBalance = token.balanceOf(address(this));
     uint256 totalBalance = currentBalance + released[address(token)];
 
@@ -106,7 +115,7 @@ contract TokenVesting is Ownable {
     } else if (timestamp >= start + duration || revoked[address(token)]) {
       return totalBalance;
     } else {
-      return totalBalance * (timestamp - start) / duration;
+      return (totalBalance * (timestamp - start)) / duration;
     }
   }
 }

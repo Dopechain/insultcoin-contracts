@@ -1,6 +1,8 @@
 
 import { task } from "hardhat/config";
 import "@nomiclabs/hardhat-waffle";
+import "solidity-coverage"
+
 let config = require("./insultcoin.config")
 
 // This is a sample Hardhat task. To learn how to create your own go to

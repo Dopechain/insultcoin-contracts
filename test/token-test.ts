@@ -25,6 +25,30 @@ describe("Token", function() {
 
     await tokenContract.deployed();
   });
+  it("Should pause account as moderator", async function() {
+    const [owner, addr1, addr2] = await ethers.getSigners();
+    
+    const Token = await ethers.getContractFactory("Token");
+    const tokenContract = await Token.deploy(...await testingTokenSettings());
+
+    await tokenContract.deployed();
+
+    await tokenContract.setPause(addr1.address, true)
+
+    expect(await tokenContract.paused(addr1.address)).to.equal(true)
+  });
+  it("Should pause network as moderator", async function() {
+    const [owner, addr1, addr2] = await ethers.getSigners();
+    
+    const Token = await ethers.getContractFactory("Token");
+    const tokenContract = await Token.deploy(...await testingTokenSettings());
+
+    await tokenContract.deployed();
+
+    await tokenContract.setPauseAll(true)
+
+    expect(await tokenContract.pausedAll()).to.equal(true)
+  });
   it("Should be able to transfer", async function() {
     const [owner, addr1, addr2] = await ethers.getSigners();
     const Token = await ethers.getContractFactory("Token");

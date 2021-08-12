@@ -71,5 +71,5 @@ localhost:8545.
 ## License
 
 I license this source code under the MIT license, no backsies. This is
-gonna be open source code, and [if you like this, please buy a couple
+gonna be open source code, and [if you find this funny, please buy a couple
 InsultCoins, because I want money money!](https://buy.insultcoin.ml)

@@ -74,7 +74,7 @@ describe("ICO", function() {
     await icoContract.connect(addr1).buy(overrides)
     let balance = await tokenContract.balanceOf(addr1.address)
     
-    expect(balance._hex).to.equal('0x03e8');
+    expect(balance._hex).to.equal('0x3635c9adc5dea00000');
   });
   it("Should harvest the ETH inside the ICO as fund manager", async function() {
     const [owner, addr1, addr2] = await ethers.getSigners();
