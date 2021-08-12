@@ -10,7 +10,7 @@ a bunch of random layer-2s, probably Polygon, HECO? It'll go cross-chain one day
 
 ## Mission
 
-We want to allow all people from around the world with an Internet connection to be able to insult each other in an uncensored and secure way, in a really fun and idiotic way.
+We want to allow all people from around the world with an Internet connection to be able to insult each other in an uncensored and secure way, in a really fun and idiotic way. This is basically just a shitcoin.
 
 ## Disclaimer
 
@@ -20,13 +20,12 @@ No audits, no secure-lock-insurance-whatever, cuz I'm not able to afford it with
 ## Tokenomics
 
 75% of the total supply goes towards the ICO, while 25% stays with me.
-I swear, I wanted to do 1% but my mom wanted to cash in on this idea,
-so I relented. This money is vested over 3 years.
+These tokens will be vested over 3 years.
 
 ## Governance
 
 Sadly it will not have a built-in token voting DAO whatever governance system
-cuz it causes paperwork, paperwork and mounds of paperwork.
+cuz I'm too lazy to make one.
 However, there is by default a timelock controller from OpenZeppelin that
 forces me to wait a couple hours before making changes. If you have
 a good idea, contact me!
@@ -43,18 +42,12 @@ In the InsultCoin code, there are multiple roles:
 To be honest, I think I'm going to be giving up on a couple of these,
 so don't consider them promises.
 
-### Stage 1 [x]
+### Stage 1
 
 - Deploy the insulting, token, ICO and other basic contracts to BSC
-
-### Stage 2 []
-
 - Improve upon the tokenomics
 - An InsultCoin lottery
 - ~~Market manipulation to pump the price~~
-
-### Stage 3 []
-
 - Bridge INSULT across different chains
 - Create a native Insult Chain for high-speed insulting
 
