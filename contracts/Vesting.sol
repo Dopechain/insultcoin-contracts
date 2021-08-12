@@ -6,19 +6,21 @@ import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
 /**
  * @title TokenVesting
- * @author OpenZeppelin
+ * @author OpenZeppelin, edited by cybertelx
  * @dev A token holder contract that can release its token balance gradually like a
  * typical vesting scheme, with a cliff and vesting period. Optionally revocable by the
  * owner.
- * @notice This was edited a bit by cybertelx.
  */
 contract TokenVesting is Ownable {
   using SafeERC20 for ERC20;
 
+  /// @notice Fires when some tokens are released to the beneficiary.
   event Released(uint256 amount);
+
+  /// @notice When the vesting is revoked by the owner.
+  /// @dev This shouldn't happen with the current deploy contract stuff.
   event Revoked();
 
-  // beneficiary of tokens after they are released
   address public beneficiary;
 
   uint256 public cliff;
@@ -27,7 +29,9 @@ contract TokenVesting is Ownable {
 
   bool public revocable;
 
+  /// @notice The total amount that has been released of a token.
   mapping(address => uint256) public released;
+  /// @notice If vesting for that token has been revoked by the owner.
   mapping(address => bool) public revoked;
 
   /**

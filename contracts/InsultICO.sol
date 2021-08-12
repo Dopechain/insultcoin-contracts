@@ -2,7 +2,6 @@
 pragma solidity ^0.8.0;
 
 import "./Token.sol";
-import "./IICO.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "hardhat/console.sol";
@@ -12,7 +11,7 @@ import "hardhat/console.sol";
  * @author some guy on the internet
  * @dev A smart contract that accepts BNB and transfers InsultCoin.
  */
-contract ICO is IICO, AccessControl {
+contract ICO is AccessControl {
   // Fund manager: can withdraw and control funds
   bytes32 public constant FUNDMAN = keccak256("FUND_MAN");
 
@@ -39,6 +38,14 @@ contract ICO is IICO, AccessControl {
     RATE = _rate;
   }
 
+  /// @notice This allows you to buy straight from your wallet,
+  /// @notice just by sending ether (with a lot of gas)
+  fallback() external payable {
+    _buy(msg.value, msg.sender);
+  }
+
+  /// @notice Harvest the ICO's balance to an address.
+  /// @notice Only usable by the Fund Manager.
   function harvestToAccount(address account) public {
     require(hasRole(FUNDMAN, msg.sender), "only fund manager can withdraw $$$");
     require(address(this).balance > 0, "I'm broke m8");
@@ -46,15 +53,27 @@ contract ICO is IICO, AccessControl {
     payable(account).transfer(address(this).balance);
   }
 
-  function buy() external payable override icoactive {
-    uint256 _amount = _getTokenAmount(msg.value);
-    uint256 bal = token.balanceOf(address(this));
-
-    emit TokenBought(msg.sender, _amount, bal - _amount);
-
-    token.transfer(msg.sender, _amount);
+  /// @notice Buy some tokens.
+  /// @notice Only usable by the Fund Manager.
+  function buy() external payable icoactive {
+    _buy(msg.value, msg.sender);
   }
 
+  /// @dev An internal function with buy logic.
+  /// @param value The amount of ETH being used.
+  /// @param sender The address who will get the tokens.
+  function _buy(uint256 value, address sender) internal {
+    uint256 _amount = _getTokenAmount(value);
+    uint256 bal = token.balanceOf(address(this));
+
+    emit TokenBought(sender, _amount, bal - _amount);
+
+    token.transfer(sender, _amount);
+  }
+
+  /// @dev An internal function for calculating how much INSULT to give.
+  /// @param _weiAmount The amount of Ether (in wei) being spent
+  /// @return uint256 The amount of tokens to give
   function _getTokenAmount(uint256 _weiAmount) internal view returns (uint256) {
     return _weiAmount * RATE;
   }

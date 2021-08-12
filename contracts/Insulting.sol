@@ -69,8 +69,7 @@ contract Insulting is AccessControl {
   }
 
   /// @notice Insult a target.
-  /// User must approve at least {tokensRequired} INSULT to insult someone.
-  /// You have to approve this before you insult
+  /// User must approve at least 1 INSULT to insult someone.
   /// @param target receiver of the insult
   /// @param message the insult
   /// @param cost the amount to burn
@@ -90,6 +89,13 @@ contract Insulting is AccessControl {
     _makeInsult(msg.sender, target, message, cost, block.timestamp);
   }
 
+  /// @dev The internal function with insulting logic.
+  /// User must approve at least 1 INSULT to insult someone.
+  /// @param sender The sender of the insult.
+  /// @param target The receiver of the insult
+  /// @param message The insult message.
+  /// @param cost The amount to burn.
+  /// @param time The timestamp.
   function _makeInsult(
     address sender,
     address receiver,
