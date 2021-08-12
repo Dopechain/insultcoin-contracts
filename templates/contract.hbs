@@ -5,28 +5,65 @@
 {{{natspec.devdoc}}}
 
 {{#each ownModifiers}}
-### `{{name}}({{args}})`
-
+### `modifier {{name}}({{args}})`
 {{{natspec.userdoc}}}
-
 {{{natspec.devdoc}}}
+{{#if natspec.params}}
+#### Parameters:
+| Name            | Type | Description |
+|-----------------|------|-------------|
+{{/if}}
+
+{{~#each natspec.params~}}
+|`{{param}}`|{{#lookup ../args.types @index}}{{/lookup}}|{{ description }}
+{{~/each~}}
+
+{{#if natspec.returns}}
+  #### Returns:
+  {{outputs}}
+{{/if}}
 
 {{/each}}
 
 {{#each ownFunctions}}
-### `{{name}}({{args}}){{#if outputs}} → {{outputs}}{{/if}}` ({{visibility}})
-
+### `function {{name}}({{args}}){{#if outputs}} → {{outputs}}{{/if}}` ({{visibility}})
 {{{natspec.userdoc}}}
-
 {{{natspec.devdoc}}}
+{{#if natspec.params}}
+#### Parameters:
+| Name            | Type | Description |
+|-----------------|------|-------------|
+{{/if}}
 
+{{~#each natspec.params~}}
+|`{{param}}`|{{#lookup ../args.types @index}}{{/lookup}}|{{ description }}
+{{~/each~}}
+
+{{#if natspec.returns}}
+  #### Returns:
+  {{outputs}}
+{{/if}}
+
+This function's visibility is `{{visibility}}`. 
 {{/each}}
 
 {{#each ownEvents}}
-### `{{name}}({{args}})`
-
+### `event {{name}}({{args}})`
 {{{natspec.userdoc}}}
-
 {{{natspec.devdoc}}}
+{{#if natspec.params}}
+#### Parameters:
+| Name            | Type | Description |
+|-----------------|------|-------------|
+{{/if}}
+
+{{~#each natspec.params~}}
+|`{{param}}`|{{#lookup ../args.types @index}}{{/lookup}}|{{ description }}
+{{~/each~}}
+
+{{#if natspec.returns}}
+  #### Returns:
+  {{outputs}}
+{{/if}}
 
 {{/each}}

@@ -4,7 +4,6 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "./Token.sol";
-import "./IICO.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
 /**
@@ -21,6 +20,9 @@ contract Insulting is AccessControl {
   Counters.Counter public insultIdCount;
 
   bytes32 public constant FUNDMAN = keccak256("FUND_MAN");
+
+  /// @notice Fired whenever someone sends an insult.
+  event InsultSent(Insult insult);
 
   /// @notice This variable maps insults to senders.
   /// @dev This is intentionally optimized for smart
@@ -92,7 +94,7 @@ contract Insulting is AccessControl {
   /// @dev The internal function with insulting logic.
   /// User must approve at least 1 INSULT to insult someone.
   /// @param sender The sender of the insult.
-  /// @param target The receiver of the insult
+  /// @param receiver The receiver of the insult
   /// @param message The insult message.
   /// @param cost The amount to burn.
   /// @param time The timestamp.
@@ -110,6 +112,7 @@ contract Insulting is AccessControl {
     mySentInsults[sender].push(ins);
     myReceivedInsults[receiver].push(ins);
     idToInsult[newid].push(ins);
+    emit InsultSent(ins);
   }
 
   /// @notice Adjusts the amount you need to burn to insult: fund manager only!

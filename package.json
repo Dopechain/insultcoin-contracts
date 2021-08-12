@@ -49,7 +49,7 @@
     "deploy-bsctest": "npx hardhat run --network bsctest scripts/deploy.ts",
     "rpc": "npx hardhat node",
     "deploy-rpc": "npx hardhat run --network localhost scripts/deploy.ts",
-    "docgen": "npx solidity-docgen --solc-module solc-0.8"
+    "docgen": "npx solidity-docgen --solc-module solc-0.8 -t templates"
   },
   "author": "",
   "license": "ISC"
