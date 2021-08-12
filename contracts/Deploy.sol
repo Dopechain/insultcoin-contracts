@@ -2,11 +2,17 @@
 pragma solidity ^0.8.0;
 
 import "./Token.sol";
-import "./optional/InsultICO.sol";
-import "./optional/Vesting.sol";
+import "./InsultICO.sol";
+import "./Vesting.sol";
 import "@openzeppelin/contracts/governance/TimelockController.sol";
-import "./optional/Insulting.sol";
+import "./Insulting.sol";
 
+/**
+ * @title Deployment
+ * @author cybertelx
+ * @dev This contract deploys the other contracts.
+ * @dev You should not need to touch it directly, just use the config file!
+ */
 contract Deployment {
   Token public tokenContract;
   ICO public icoContract;
@@ -40,6 +46,10 @@ contract Deployment {
     bool enabled;
   }
 
+  /// @dev You should not have to touch this directly.
+  /// @dev Editing the config file (insultcoin.config.ts)
+  /// @dev is all you need to customize this to your heart's
+  /// @dev content.
   constructor(
     string memory name,
     string memory symbol,

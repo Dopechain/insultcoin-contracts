@@ -1,12 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../Token.sol";
+import "./Token.sol";
 import "./IICO.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "hardhat/console.sol";
 
+/**
+ * @title ICO
+ * @author some guy on the internet
+ * @dev A smart contract that accepts BNB and transfers InsultCoin.
+ */
 contract ICO is IICO, AccessControl {
   // Fund manager: can withdraw and control funds
   bytes32 public constant FUNDMAN = keccak256("FUND_MAN");
@@ -20,6 +25,10 @@ contract ICO is IICO, AccessControl {
 
   event TokenBought(address sender, uint256 amount, uint256 remaining);
 
+  /// @dev You should not have to touch this directly.
+  /// @dev Editing the config file (insultcoin.config.ts)
+  /// @dev is all you need to customize this to your heart's
+  /// @dev content.
   constructor(
     address _tokenAddr,
     address fundmanager,

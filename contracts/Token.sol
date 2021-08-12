@@ -8,7 +8,8 @@ import "hardhat/console.sol";
 
 /// @title Token
 /// @author cybertelx
-/// @notice Insult others on the blockchain: it's the future!
+/// @notice The token contract is just the InsultCoin ERC-20 token.
+/// @notice It is depended on by other contracts.
 contract Token is ERC20, AccessControl {
   /// @notice The Fund Manager controls InsultCoin's economy!
   /// @dev The fund manager can withdraw from the ICO and more. See config.

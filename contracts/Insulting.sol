@@ -3,12 +3,13 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import "../Token.sol";
+import "./Token.sol";
 import "./IICO.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
 /**
  * @title Insulting
+ * @author cybertelx
  * @dev A smart contract that accepts InsultCoin and allows people to insult each other.
  */
 contract Insulting is AccessControl {
@@ -58,6 +59,10 @@ contract Insulting is AccessControl {
     uint256 timestamp;
   }
 
+  /// @dev You should not have to touch this directly.
+  /// @dev Editing the config file (insultcoin.config.ts)
+  /// @dev is all you need to customize this to your heart's
+  /// @dev content.
   constructor(ERC20 token, address fundman) {
     insultCoin = token;
     _setupRole(FUNDMAN, fundman);
