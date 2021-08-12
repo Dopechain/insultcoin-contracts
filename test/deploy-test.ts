@@ -88,5 +88,23 @@ describe("Deployment Contract", function() {
 
     expect(await tokenContract.balanceOf(owner.address)).to.equal(1000)
   });
+  it("Check if contracts are created", async function() {
+    const [owner, addr1, addr2] = await ethers.getSigners();
+
+    const Deploy = await ethers.getContractFactory("Deployment")
+    const Token = await ethers.getContractFactory("Token")
+
+    let settings = await testingTokenSettings()
+
+    const deployContract = await Deploy.deploy(...settings);
+    await deployContract.deployed();
+
+    expect(await deployContract.tokenContract()).to.not.equal("0x0000000000000000000000000000000000000000")
+    expect(await deployContract.icoContract()).to.not.equal("0x0000000000000000000000000000000000000000")
+    expect(await deployContract.insultingContract()).to.not.equal("0x0000000000000000000000000000000000000000")
+    expect(await deployContract.controllerContract()).to.not.equal("0x0000000000000000000000000000000000000000")
+    // default value is set to false, so vesting contract doesn't exist
+    expect(await deployContract.vestingContract()).to.equal("0x0000000000000000000000000000000000000000")
+  });
 
 });

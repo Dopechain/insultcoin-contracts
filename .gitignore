@@ -1,10 +1,15 @@
+# Package manager files
 node_modules
 
-#Hardhat files
+# Hardhat files
 cache
 artifacts
 
-#local dev
-.vscode
+# Generated test build file things
+coverage.json
+coverage
+docs
 
+# local dev
+.vscode
 .env

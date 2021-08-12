@@ -14,7 +14,7 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 contract Insulting is AccessControl {
   using Counters for Counters.Counter;
 
-  uint256 tokensRequired = 1 * 10**18;
+  uint256 public tokensRequired = 1 * 10**18;
 
   ERC20 public insultCoin;
   Counters.Counter public insultIdCount;
