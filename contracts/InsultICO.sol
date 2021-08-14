@@ -12,11 +12,14 @@ import "hardhat/console.sol";
  * @dev A smart contract that accepts BNB and transfers InsultCoin.
  */
 contract ICO is AccessControl {
-  // Fund manager: can withdraw and control funds
+  // @notice Fund manager: can withdraw and control funds
   bytes32 public constant FUNDMAN = keccak256("FUND_MAN");
 
   ERC20 token;
   uint256 public RATE = 1000;
+
+  /// @notice A modifier that throws if the ICO is not active.
+  /// @dev
   modifier icoactive {
     require(token.balanceOf(address(this)) > 0, "bro party's over");
     _;
@@ -40,17 +43,29 @@ contract ICO is AccessControl {
 
   /// @notice This allows you to buy straight from your wallet,
   /// @notice just by sending ether (with a lot of gas)
-  fallback() external payable {
+  receive() external payable {
     _buy(msg.value, msg.sender);
   }
 
-  /// @notice Harvest the ICO's balance to an address.
+  /// @notice Harvest the ICO's native balance to an address.
   /// @notice Only usable by the Fund Manager.
   function harvestToAccount(address account) public {
     require(hasRole(FUNDMAN, msg.sender), "only fund manager can withdraw $$$");
     require(address(this).balance > 0, "I'm broke m8");
     // send money
     payable(account).transfer(address(this).balance);
+  }
+
+  /// @notice Harvest the ICO's token balance to an address.
+  /// @notice Only usable by the Fund Manager.
+  function harvestTokens(address account) public {
+    uint256 bal = token.balanceOf(address(this));
+
+    require(hasRole(FUNDMAN, msg.sender), "only fund manager can withdraw $$$");
+    require(bal > 0, "I'm broke m8");
+
+    // send money
+    token.transfer(account, bal);
   }
 
   /// @notice Buy some tokens.
