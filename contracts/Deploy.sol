@@ -50,6 +50,14 @@ contract Deployment {
   /// @dev Editing the config file (insultcoin.config.ts)
   /// @dev is all you need to customize this to your heart's
   /// @dev content.
+  /// @param name The name of the token
+  /// @param symbol The symbol of the token
+  /// @param totalSupply The total supply of the token
+  /// @param funderGets The amount the fund manager gets at the start
+  /// @param timelockSet Timelock settings
+  /// @param roles Roles settings
+  /// @param icoSet ICO settings
+  /// @param vesting Vesting settings
   constructor(
     string memory name,
     string memory symbol,
