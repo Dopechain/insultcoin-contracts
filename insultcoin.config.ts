@@ -63,7 +63,7 @@ let config: ConfigSchema = {
         // The amount of seconds until a proposal can be executed.
         // This may not be hyper accurate (~5 mins max difference),
         // as the EVM does not have a central time system.
-        minDelay: 3600,
+        minDelay: 14400,
 
         // The proposers. These people can create "proposals",
         // transactions which get delayed for minDelay seconds.

@@ -12,7 +12,6 @@
     "ethereumjs-util": "^7.0.10",
     "keccak256": "^1.0.2",
     "legalize": "^1.3.0",
-    "solidity-docgen": "^0.5.13",
     "web3-eth-abi": "^1.3.6"
   },
   "devDependencies": {
@@ -29,13 +28,18 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "ethereum-waffle": "^3.3.0",
+    "ethernal": "^0.7.6",
     "ethers": "^5.2.0",
     "hardhat": "^2.4.3",
+    "hardhat-abi-exporter": "^2.2.1",
+    "hardhat-ethernal": "^0.3.8",
+    "hardhat-spdx-license-identifier": "^2.0.3",
     "mocha": "^9.0.1",
     "prettier": "^2.3.2",
     "prettier-plugin-solidity": "^1.0.0-beta.15",
     "solc-0.8": "npm:solc@^0.8.0",
     "solidity-coverage": "^0.7.16",
+    "solidity-docgen": "^0.5.13",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.2"
   },
@@ -52,5 +56,5 @@
     "docgen": "npx solidity-docgen --solc-module solc-0.8 -t templates"
   },
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }

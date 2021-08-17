@@ -1,7 +1,10 @@
 
-import { task } from "hardhat/config";
+import { extendEnvironment, task } from "hardhat/config";
 import "@nomiclabs/hardhat-waffle";
-import "solidity-coverage"
+import "solidity-coverage";
+import 'hardhat-abi-exporter';
+import 'hardhat-ethernal'
+import 'hardhat-spdx-license-identifier'
 
 let config = require("./insultcoin.config")
 
@@ -15,6 +18,10 @@ task("accounts", "Prints the list of accounts", async (args, hre) => {
   }
 });
 
+extendEnvironment((hre) => {
+  hre.ethernalSync = true;
+  hre.ethernalWorkspace = 'InsultCoin';
+});
 
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
@@ -23,6 +30,15 @@ task("accounts", "Prints the list of accounts", async (args, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
+  spdxLicenseIdentifier: {
+    runOnCompile: true,
+  },
+  abiExporter: {
+    path: './abi',
+    clear: true,
+    flat: true,
+    spacing: 2
+  },
   defaultNetwork: "hardhat",
   solidity: {
     version: "0.8.0",
@@ -54,7 +70,7 @@ module.exports = {
       accounts: [config.deployKey]
     },
     bsctest: {
-      url: `https://data-seed-prebsc-1-s1.binance.org:8545/`,
+      url: `https://data-seed-prebsc-1-s2.binance.org:8545/`,
       accounts: [config.deployKey]
     },
   } : undefined,

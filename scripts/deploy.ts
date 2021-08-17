@@ -26,7 +26,30 @@ async function main() {
 
   try {
     console.log(parseConfigIntoParams(configParsed))
-    await Deployment.deploy(...parseConfigIntoParams(configParsed))
+    let depl = await Deployment.deploy(...parseConfigIntoParams(configParsed))
+    
+    try {
+      await hre.ethernal.push({
+        name: 'Deployment',
+        address: depl.address
+      });
+      await hre.ethernal.push({
+        name: 'Token',
+        address: await depl.tokenContract()
+      });
+      await hre.ethernal.push({
+        name: 'ICO',
+        address: await depl.icoContract()
+      });
+      await hre.ethernal.push({
+        name: 'TokenVesting',
+        address: await depl.vestingContract()
+      });
+    } catch(e) {
+      
+    }
+
+    
   } catch (e) {
     console.error(e);
   }
