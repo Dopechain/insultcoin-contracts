@@ -74,9 +74,10 @@ let config: ConfigSchema = {
 
         // The executors. They can call the execute() function,
         // which causes a proposal to be executed.
-        // It's safe to allow everyone to do this (by setting to 0x0)
+        // Only set this to an address under your team's control, because
+        // of a bug allowing privilege escalation.
         executors: [
-            new EthAddress("0")
+            new EthAddress("0x6Df36b3718a18795f75f3b094432c0D755789d72")
         ],
     },
 
